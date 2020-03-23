@@ -1,14 +1,31 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
-int main() {
+int modulo(int a, int b) {
+if(a >= 0) {
+return a % b;
+}
+else {
+while(a < 0) {
+a += b;
+}
+return a;
+}
+}
+
+int main(int argc, char* argv[]) {
 FILE* input = stdin;
 FILE* output = stdout;
-char c;
+char c, k='K';
+k = k - 65;
 while((c=getc(input)) != EOF) {
-if(!isalpha(c))
-continue;
-c=toupper(c);
+//if(!isalpha(c))
+//continue;
+//c = c - 65;
+//c = modulo((c + k),26);
+//c = c + 65;
+    c = (c+k) % 26;
 putc(c,output);
 }
 return 0;
