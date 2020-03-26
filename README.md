@@ -9,7 +9,7 @@ Our contenders begin the race at "square 1" of 70 squares. Each square represent
 
 
 ## App Walk Through
-<img src="http://g.recordit.co/6qyvimPDdV.gif" width=200><br>
+<img src="http://g.recordit.co/6qyvimPDdV.gif" width=400><br>
 
 
 
