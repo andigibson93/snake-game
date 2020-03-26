@@ -1,5 +1,5 @@
 
-<img src= https://devbizops.files.wordpress.com/2020/01/068-are-developers-more-important-than-money.jpg?w=444&h=444&crop=1 width=1000><br>
+<img src= https://usercontent2.hubstatic.com/13149381.jpg width=300><br>
 
 # Tortoise and Hare
 
