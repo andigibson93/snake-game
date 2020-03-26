@@ -1,6 +1,12 @@
 
 <img src= https://usercontent2.hubstatic.com/13149381.jpg width=300><br>
 
+<img src= https://i.pinimg.com/originals/ed/04/e9/ed04e9defc1ff6826618da5589f62de8.jpg width=300><br>
+
+<img src= https://images.reference.com/amg-cms-reference-images/media/moral-lesson-story-rabbit-turtle-race_cf23adab692f68cc.jpg width=300><br>
+
+<img src= https://storynory.com/wp-content/uploads/2008/11/03-the-start-lr.jpg width=300><br>
+
 # Tortoise and Hare
 
 ## Simulation: (The Tortoise and the Hare) 
