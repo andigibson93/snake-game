@@ -1,5 +1,5 @@
 
-<img src= https://usercontent2.hubstatic.com/13149381.jpg width=300><br>
+<img src= https://usercontent2.hubstatic.com/13149381.jpg width=1000><br>
 
 <img src= https://i.pinimg.com/originals/ed/04/e9/ed04e9defc1ff6826618da5589f62de8.jpg width=300><br>
 
