@@ -1,3 +1,6 @@
+
+<img src= https://devbizops.files.wordpress.com/2020/01/068-are-developers-more-important-than-money.jpg?w=444&h=444&crop=1 width=1000><br>
+
 # Tortoise and Hare
 
 ## Simulation: (The Tortoise and the Hare) 
