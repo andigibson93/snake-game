@@ -5,13 +5,12 @@
 In this exercise, you will re-create the classic race of the tortoise and the hare. You will use ```random number generation``` to develop a simulation of this memorable event.
 
 
-## App Walk Through
-<img src="http://g.recordit.co/6qyvimPDdV.gif" width=500><br>
-
-
-
-
 Our contenders begin the race at "square 1" of 70 squares. Each square represents a possible position along the race course. The finish line is at ```square 70```. The first contender to reach or pass ```square 70``` is rewarded with a pail of fresh carrots and lettuce. The course weaves its way up the side of a slippery mountain, so occasionally the contenders lose ground.
+
+
+## App Walk Through
+<img src="http://g.recordit.co/6qyvimPDdV.gif" width=200><br>
+
 
 
 There is a clock that ticks once per second. With each tick of the clock, your program should adjust the position of the animals according to the rules in the following figure.
