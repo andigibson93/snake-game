@@ -36,7 +36,7 @@ Hare                   Sleep                     20%                            
 
 Use variables to keep track of the positions of the animals (i.e., position numbers are 0 - 70). Start each animal at position 0 (i.e., the "starting gate"). If an animal slips left before square 0, move the animal back to square 0.
 
-Generate the percentages in the preceding table by producing a random integer i in the range ```0 £ i < 10.``` For the tortoise, perform a "fast plod" when 0 ```£ i < 5,``` a "slip" when ```5 £ i £ 6 ``` or a "slow plod" when ```7 £ i £ 9.``` Use a similar technique to move the hare.
+Generate the percentages in the preceding table by producing a random integer i in the range ```0 £ i < 10.``` For the tortoise, perform a "fast plod" when ```0 £ i < 5,``` a "slip" when ```5 £ i £ 6 ``` or a "slow plod" when ```7 £ i £ 9.``` Use a similar technique to move the hare.
 
 #### Begin the race by printing
 
