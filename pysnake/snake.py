@@ -3,14 +3,19 @@ from random import randint
 import pygame
 import time
 
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+SNAKE_SIZE=25
+APPLE_SIZE=20
+
 class Apple:
     x = 0
     y = 0
-    step = 44
 
     def __init__(self,x,y):
-        self.x = x * self.step
-        self.y = y * self.step
+        self.x = x * APPLE_SIZE
+        self.y = y * APPLE_SIZE
 
     def draw(self, surface, image):
         surface.blit(image,(self.x, self.y))
@@ -19,12 +24,11 @@ class Apple:
 class Player:
     x = [0]
     y = [0]
-    step = 44
     direction = 0
     length = 3
 
     updateCountMax = 2
-    updateCount = 0
+    updateCount = 0 
 
     def __init__(self, length):
         self.length = length
@@ -33,8 +37,8 @@ class Player:
             self.y.append(-100)
 
         # initial positions, no collision.
-        self.x[1] = 1*44
-        self.x[2] = 2*44
+        self.x[1] = 1*SNAKE_SIZE
+        self.x[2] = 2*SNAKE_SIZE
 
     def update(self):
 
@@ -42,50 +46,67 @@ class Player:
         if self.updateCount > self.updateCountMax:
 
             # update previous positions
+            # for (i = length -1; i>0; i--)
             for i in range(self.length-1,0,-1):
                 self.x[i] = self.x[i-1]
                 self.y[i] = self.y[i-1]
 
             # update position of head of snake
             if self.direction == 0:
-                self.x[0] = self.x[0] + self.step
+                self.x[0] = self.x[0] + SNAKE_SIZE
             if self.direction == 1:
-                self.x[0] = self.x[0] - self.step
+                self.x[0] = self.x[0] - SNAKE_SIZE
             if self.direction == 2:
-                self.y[0] = self.y[0] - self.step
+                self.y[0] = self.y[0] - SNAKE_SIZE
             if self.direction == 3:
-                self.y[0] = self.y[0] + self.step
+                self.y[0] = self.y[0] + SNAKE_SIZE
+
+            if self.x[0] > SCREEN_WIDTH:
+                self.x[0] = 0
+
+            if self.y[0] > SCREEN_HEIGHT:
+                self.y[0] = 0
+
+            if self.x[0] < 0:
+                self.x[0] = SCREEN_WIDTH
+            
+            if self.y[0] < 0:
+                self.y[0] = SCREEN_HEIGHT
 
             self.updateCount = 0
 
 
     def moveRight(self):
-        self.direction = 0
+        if self.direction != 1:
+            self.direction = 0
 
     def moveLeft(self):
-        self.direction = 1
+        if self.direction != 0:
+            self.direction = 1
 
     def moveUp(self):
-        self.direction = 2
+        if self.direction != 3:
+            self.direction = 2
 
     def moveDown(self):
-        self.direction = 3
+        if self.direction != 2:
+            self.direction = 3
 
     def draw(self, surface, image):
         for i in range(0,self.length):
             surface.blit(image,(self.x[i],self.y[i]))
 
-class Game:
-    def isCollision(self,x1,y1,x2,y2,bsize):
-        if x1 >= x2 and x1 <= x2 + bsize:
-            if y1 >= y2 and y1 <= y2 + bsize:
+class Game: #checks if the snake and the apple collides, and snake collides with itself
+    def isCollision(self,x1,y1,x2,y2, asize, bsize):
+        if x1 + asize > x2 and x1 < x2 + bsize:
+            if y1 + asize > y2 and y1 < y2 + bsize:
                 return True
         return False
 
 class App:
 
-    windowWidth = 800
-    windowHeight = 600
+    windowWidth = SCREEN_WIDTH
+    windowHeight = SCREEN_HEIGHT
     player = 0
     apple = 0
 
@@ -95,7 +116,7 @@ class App:
         self._image_surf = None
         self._apple_surf = None
         self.game = Game()
-        self.player = Player(3)
+        self.player = Player(5) #change the size of the player
         self.apple = Apple(5,5)
 
     def on_init(self):
@@ -104,8 +125,8 @@ class App:
 
         pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
-        self._image_surf = pygame.image.load("block.jpg").convert()
-        self._apple_surf = pygame.image.load("block.jpg").convert()
+        self._image_surf = pygame.image.load("snake.png").convert()
+        self._apple_surf = pygame.image.load("apple.png").convert()
 
     def on_event(self, event):
         if event.type == QUIT:
@@ -116,15 +137,15 @@ class App:
 
         # does snake eat apple?
         for i in range(0,self.player.length):
-            if self.game.isCollision(self.apple.x,self.apple.y,self.player.x[i], self.player.y[i],44):
-                self.apple.x = randint(2,9) * 44
-                self.apple.y = randint(2,9) * 44
+            if self.game.isCollision(self.apple.x,self.apple.y,self.player.x[i], self.player.y[i],APPLE_SIZE, SNAKE_SIZE):
+                self.apple.x = randint(2,9) * APPLE_SIZE
+                self.apple.y = randint(2,9) * APPLE_SIZE
                 self.player.length = self.player.length + 1
 
 
         # does snake collide with itself?
         for i in range(2,self.player.length):
-            if self.game.isCollision(self.player.x[0],self.player.y[0],self.player.x[i], self.player.y[i],40):
+            if self.game.isCollision(self.player.x[0],self.player.y[0],self.player.x[i], self.player.y[i],SNAKE_SIZE, SNAKE_SIZE):
                 print("You lose! Collision: ")
                 print("x[0] (" + str(self.player.x[0]) + "," + str(self.player.y[0]) + ")")
                 print("x[" + str(i) + "] (" + str(self.player.x[i]) + "," + str(self.player.y[i]) + ")")
@@ -167,7 +188,7 @@ class App:
             self.on_loop()
             self.on_render()
 
-            time.sleep (50.0 / 1000.0);
+            pygame.time.wait(1)
         self.on_cleanup()
 
 if __name__ == "__main__" :
