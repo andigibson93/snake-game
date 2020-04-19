@@ -8,8 +8,11 @@ SCREEN_HEIGHT = 600
 
 SNAKE_SIZE=25
 APPLE_SIZE=20
+BANANA_SIZE=20
+CHERRY_SIZE=20
+GRAPE_SIZE=20
 
-class Apple:
+class Fruit:
     x = 0
     y = 0
 
@@ -68,10 +71,10 @@ class Player:
                 self.y[0] = 0
 
             if self.x[0] < 0:
-                self.x[0] = SCREEN_WIDTH
+                self.x[0] = SCREEN_WIDTH - SNAKE_SIZE
             
             if self.y[0] < 0:
-                self.y[0] = SCREEN_HEIGHT
+                self.y[0] = SCREEN_HEIGHT - SNAKE_SIZE
 
             self.updateCount = 0
 
@@ -115,9 +118,12 @@ class App:
         self._display_surf = None
         self._image_surf = None
         self._apple_surf = None
+
+        self._fruit_surf = list()
+        self._fruit_number = 1
         self.game = Game()
         self.player = Player(5) #change the size of the player
-        self.apple = Apple(5,5)
+        self.apple = Fruit(5,5)
 
     def on_init(self):
         pygame.init()
@@ -127,6 +133,12 @@ class App:
         self._running = True
         self._image_surf = pygame.image.load("snake.png").convert()
         self._apple_surf = pygame.image.load("apple.png").convert()
+
+        
+        self._fruit_surf.append(pygame.image.load("apple.png").convert())
+        self._fruit_surf.append(pygame.image.load("banana.png").convert())
+        self._fruit_surf.append(pygame.image.load("grape.png").convert())
+        self._fruit_surf.append(pygame.image.load("cherry.png").convert())
 
     def on_event(self, event):
         if event.type == QUIT:
@@ -138,9 +150,10 @@ class App:
         # does snake eat apple?
         for i in range(0,self.player.length):
             if self.game.isCollision(self.apple.x,self.apple.y,self.player.x[i], self.player.y[i],APPLE_SIZE, SNAKE_SIZE):
-                self.apple.x = randint(2,9) * APPLE_SIZE
-                self.apple.y = randint(2,9) * APPLE_SIZE
+                self.apple.x = randint(2,SCREEN_WIDTH - APPLE_SIZE) #where the apples are placed on the screen
+                self.apple.y = randint(2,SCREEN_HEIGHT - APPLE_SIZE)
                 self.player.length = self.player.length + 1
+                self._fruit_number = randint(0, len(self._fruit_surf)-1)
 
 
         # does snake collide with itself?
@@ -156,7 +169,7 @@ class App:
     def on_render(self):
         self._display_surf.fill((0,0,0))
         self.player.draw(self._display_surf, self._image_surf)
-        self.apple.draw(self._display_surf, self._apple_surf)
+        self.apple.draw(self._display_surf, self._fruit_surf[self._fruit_number])
         pygame.display.flip()
 
     def on_cleanup(self):
@@ -166,6 +179,7 @@ class App:
         if self.on_init() == False:
             self._running = False
 
+        clock = pygame.time.Clock()
         while( self._running ):
             pygame.event.pump()
             keys = pygame.key.get_pressed()
@@ -188,7 +202,7 @@ class App:
             self.on_loop()
             self.on_render()
 
-            pygame.time.wait(1)
+            clock.tick(50)
         self.on_cleanup()
 
 if __name__ == "__main__" :
