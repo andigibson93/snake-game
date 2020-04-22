@@ -1,6 +1,6 @@
 ## App Walk Through
 
-##### Snake Game - Pygames....random fruits, multiplayer, sound, speed increase, high score
+##### Snake Game - Pygames....random fruits, multiplayer, sound, speed increase, high score (coming soon)
 <img src= "http://g.recordit.co/E2V1VvO1Ox.gif"  width=400></br>
 
 ##### Hare & Tortoise Game - C++
