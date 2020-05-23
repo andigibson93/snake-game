@@ -11,7 +11,3 @@
 - [X] Increase the speed of the snake
 - [ ] Print High Score on screen
 - [ ] Create obstacles to produce level difficulty
-
-
-### Hare & Tortoise Game - C++
-<img src="http://g.recordit.co/6qyvimPDdV.gif" width=400><br>
