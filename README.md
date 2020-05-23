@@ -6,11 +6,11 @@
 
 ## Required
 - [X] Create random fruits
-- [X] Multiplayer (2 player game optional)
-- [X] Add sound for the movement of the snake, and eating fruits
+- [ ] Multiplayer (2 player game optional)
+- [ ] Add sound for the movement of the snake, and eating fruits
 - [X] Increase the speed of the snake
-- [X] Print High Score on screen
-- [X] Create obstacles to produce level difficulty
+- [ ] Print High Score on screen
+- [ ] Create obstacles to produce level difficulty
 
 
 ### Hare & Tortoise Game - C++
